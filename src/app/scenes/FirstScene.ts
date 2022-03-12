@@ -18,9 +18,10 @@ export default class FirstScene extends Phaser.Scene {
         );
     }
 
-
+    
     platforms;
     player;
+    cursors;
 
     create(){
         //add assets to the scene
@@ -34,13 +35,13 @@ export default class FirstScene extends Phaser.Scene {
     this.platforms.create(600, 400, 'ground');
     this.platforms.create(50, 250, 'ground');
     this.platforms.create(750, 220, 'ground');
-
-
+    
+    
     this.player = this.physics.add.sprite(100, 450, 'dude');
-
+    
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
-
+    
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNames('dude', { start: 0, end: 3}),
@@ -60,12 +61,32 @@ export default class FirstScene extends Phaser.Scene {
         frameRate: 10,
         repeat: -1
     });
+
+    this.physics.add.collider(this.player, this.platforms);
+    
+    this.cursors = this.input.keyboard.createCursorKeys();
+    
 }
 
 
 
     update(){
         //every 16ms Game logic here
+        if(this.cursors.left.isDown){
+            this.player.setVelocityX(-160);
+            this.player.anims.play('left', true);
+        }
+        else if(this.cursors.right.isDown){
+            this.player.setVelocityX(160);
+            this.player.anims.play('right', true);
+        }
+        else{
+            this.player.setVelocityX(0);
+            this.player.anims.play('turn');
+        }
+        if(this.cursors.up.isDown && this.player.body.touching.down){
+            this.player.setVelocityY(-330);
+        }
     }
 
 

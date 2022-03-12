@@ -1,4 +1,4 @@
-import { truncate } from "fs";
+
 
 export default class FirstScene extends Phaser.Scene {
 

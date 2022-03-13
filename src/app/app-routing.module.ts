@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { GameoverComponent } from './gameover/gameover.component';
 import { GamepadComponent } from './gamepad/gamepad.component';
 import { HomePageModule } from './home/home.module';
 import { HomePage } from './home/home.page';
@@ -15,10 +14,6 @@ const routes: Routes = [
   {
     path: 'gamepad',
     component: GamepadComponent
-  },
-  {
-    path: 'gameover',
-    component: GameoverComponent
   }
 ];
 

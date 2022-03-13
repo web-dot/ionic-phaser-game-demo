@@ -6,11 +6,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { GamepadComponent } from './gamepad/gamepad.component';
+import { LandingComponent } from './landing/landing.component';
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GamepadComponent, LandingComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, RouterModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

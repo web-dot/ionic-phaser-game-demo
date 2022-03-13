@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { GameoverComponent } from './gameover/gameover.component';
+import { GamepadComponent } from './gamepad/gamepad.component';
+import { HomePageModule } from './home/home.module';
+import { HomePage } from './home/home.page';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  // },
   {
     path: '',
-    pathMatch: 'full',
-    component: AppComponent
+    component: LandingComponent
   },
+  {
+    path: 'gamepad',
+    component: GamepadComponent
+  },
+  {
+    path: 'gameover',
+    component: GameoverComponent
+  }
 ];
 
 @NgModule({

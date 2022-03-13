@@ -27,6 +27,7 @@ export default class FirstScene extends Phaser.Scene {
     scoreText;
     bombs;
     gameOver;
+    gameOverText;
 
     create(){
     //add assets to the scene
@@ -38,7 +39,6 @@ export default class FirstScene extends Phaser.Scene {
     
     
     this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-    
     this.platforms.create(600, 400, 'ground');
     this.platforms.create(50, 250, 'ground');
     this.platforms.create(750, 220, 'ground');
@@ -48,11 +48,6 @@ export default class FirstScene extends Phaser.Scene {
     
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
-
-
-    // this.bombs = this.physics.add.group();
-    // this.physics.add.collider(this.bombs, this.platforms);
-    // this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
     
     this.anims.create({
         key: 'left',
@@ -94,9 +89,10 @@ export default class FirstScene extends Phaser.Scene {
     this.physics.add.collider(this.bombs, this.platforms);
     this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
     
-    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', color: '#00ff00'});
-    
-
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', color: '#000'});
+    this.gameOverText = this.add.text(400, 300, 'GAME OVER', { fontSize: '64px', color: '#000'});
+    this.gameOverText.setOrigin(0.5);
+    this.gameOverText.visible = false;
 }
 
 collectStar (player, star)
@@ -129,6 +125,7 @@ hitBomb(player, bomb){
     player.setTint(0xff0000);
     player.anims.play('turn');
     this.gameOver = true;
+    this.gameOverText.visible = true;
 }
 
 
